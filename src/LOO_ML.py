@@ -36,16 +36,16 @@ def make_confusion_matrix(count_1, count_2, count_3, count_4):
 
     tp =  count_2 / (count_2 + count_1)
     tn =  count_3 / (count_3 + count_4)
-    acc = count_3 + count_2 / (count_1 + count_2 + count_3 + count_4)
+    acc = (count_3 + count_2) / (count_1 + count_2 + count_3 + count_4)
     bal_acc = (tp + tn) / 2
 
     print ('       #PRED_MCII+   #PRED_MCII-')
     print ('obs_MCII-    %s            %s' % (count_1, count_2))
     print ('obs_MCII+    %s            %s' % (count_3, count_4))
-    print ('TP: %s' % tp)
-    print ('TN: %s' % tn)
-    print ('ACC: %s' % acc)
-    print ('bal ACC: %s' % bal_acc)
+    print ('TP: %s  (%s/%s)' % (tp, count_2, count_2 + count_1))
+    print ('TN: %s (%s/%s)' % (tn, count_3, count_3 + count_4))
+    print ('ACC: %s (%s/%s)' % (acc, count_3 + count_2,count_1 + count_2 + count_3 + count_4))
+    print ('bal ACC: %s (%s/%s)' % (bal_acc, tp + tn, 2))
 
 def main(data_df, specified_classifier):
     r, c = data_df.shape
@@ -92,18 +92,21 @@ if __name__  == "__main__":
 	specified_classifier = LogisticRegression(max_iter=1000) #default is 100
 	count_1, count_2, count_3, count_4 = main(data_df, specified_classifier)
 	make_confusion_matrix(count_1, count_2, count_3, count_4)
+	print ('--------------')
 
 	#RF
 	print ('LOO-CV, random forest')
 	specified_classifier = RandomForestClassifier()
 	count_1, count_2, count_3, count_4 = main(data_df, specified_classifier)
 	make_confusion_matrix(count_1, count_2, count_3, count_4)
+	print ('--------------')
 
 	#SVM
 	print ('LOO-CV, SVM')
 	specified_classifier = svm.SVC()
 	count_1, count_2, count_3, count_4 = main(data_df, specified_classifier)
 	make_confusion_matrix(count_1, count_2, count_3, count_4)
+	print ('--------------')
 
 else:
 	print ("Not meant to be called")
