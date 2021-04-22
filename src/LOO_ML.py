@@ -87,7 +87,6 @@ if __name__  == "__main__":
 	data_df = pd.read_csv(data_file, sep='\t', index_col=0)
 	data_df = data_df.T
 
-
 	#LR
 	print ('LOO-CV, logistic regression')
 	specified_classifier = LogisticRegression(max_iter=1000) #default is 100
