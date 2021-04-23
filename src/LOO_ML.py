@@ -79,8 +79,7 @@ def main(data_df, specified_classifier):
 			diff_count += 1
 #         print ("Answer: %s, Predicted: %s" % (y_test, y_pred))
 
-		count_1, count_2, count_3, count_4 = count_for_confusion_matrix(y_test, y_pred, 
-																		count_1, count_2, count_3, count_4)
+		count_1, count_2, count_3, count_4 = count_for_confusion_matrix(y_test, y_pred, count_1, count_2, count_3, count_4)
 
 	print ('False Predicted: %s' % diff_count)
 	return count_1, count_2, count_3, count_4
