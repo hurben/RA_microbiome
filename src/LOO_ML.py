@@ -101,7 +101,7 @@ if __name__  == "__main__":
 
 	#RF
 	print ('LOO-CV, random forest')
-	specified_classifier = RandomForestClassifier()
+	specified_classifier = RandomForestClassifier(random_state=1)
 	count_1, count_2, count_3, count_4 = main(data_df, specified_classifier)
 	make_confusion_matrix(count_1, count_2, count_3, count_4)
 	print ('--------------')
